@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyMCE Custom Styles Example</title>
+    <!-- Include TinyMCE locally -->
+    <script src="/Text editor/node_modules/tinymce/tinymce.min.js"></script>
+</head>
+<body>
+    <!-- Textarea for TinyMCE -->
+    <textarea id="editor"></textarea>
+    <script>
+        tinymce.init({
+            selector: '#editor',
+            height: 300,
+            plugins: 'code',
+            toolbar: 'code',
+            content_style: `
+                h1, h2, h3, h4, h5, h6, p {
+                    margin: 0; /* Reset all margins */
+                    padding: 0; /* Reset all paddings */
+                }
+                h1 { font-size: 27px; line-height: 1.3; color: #000000; font-weight: bold; font-family: Arial, sans-serif; margin-bottom: calc(27px * 0.7); }
+                h2 { font-size: 28px; line-height: 1.3; color: #000000; font-weight: bold; font-family: Arial, sans-serif; margin-bottom: calc(28px * 0.7); }
+                h3 { font-size: 24px; line-height: 1.3; color: #000000; font-weight: bold; font-family: Arial, sans-serif; margin-bottom: calc(24px * 0.7); }
+                h4 { font-size: 22px; line-height: 1.3; color: #000000; font-weight: bold; font-family: Arial, sans-serif; margin-bottom: calc(22px * 0.7); }
+                h5 { font-size: 20px; line-height: 1.3; color: #000000; font-weight: bold; font-family: Arial, sans-serif; margin-bottom: calc(20px * 0.7); }
+                h6 { font-size: 19px; line-height: 1.3; color: #000000; font-weight: bold; font-family: Arial, sans-serif; margin-bottom: calc(19px * 0.7); }
+                p { font-size: 11px; line-height: 1.3; color: #000000; font-weight: 400; font-family: Arial, sans-serif; margin-bottom: calc(11px * 0.7); }
+                ul, ol { color: #000000; font-weight: 400; font-family: Arial, sans-serif; line-height: 1.3; margin-bottom: calc(11px * 0.7); }
+            `,
+            formats: {
+                h1: { block: 'h1', styles: { 'font-size': '27px', 'line-height': '1.3', 'color': '#000000', 'font-weight': 'bold', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(27px * 0.7)' } },
+                h2: { block: 'h2', styles: { 'font-size': '28px', 'line-height': '1.3', 'color': '#000000', 'font-weight': 'bold', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(28px * 0.7)' } },
+                h3: { block: 'h3', styles: { 'font-size': '24px', 'line-height': '1.3', 'color': '#000000', 'font-weight': 'bold', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(24px * 0.7)' } },
+                h4: { block: 'h4', styles: { 'font-size': '22px', 'line-height': '1.3', 'color': '#000000', 'font-weight': 'bold', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(22px * 0.7)' } },
+                h5: { block: 'h5', styles: { 'font-size': '20px', 'line-height': '1.3', 'color': '#000000', 'font-weight': 'bold', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(20px * 0.7)' } },
+                h6: { block: 'h6', styles: { 'font-size': '19px', 'line-height': '1.3', 'color': '#000000', 'font-weight': 'bold', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(19px * 0.7)' } },
+                p: { block: 'p', styles: { 'font-size': '11px', 'line-height': '1.3', 'color': '#000000', 'font-family': 'Arial, sans-serif', 'margin-bottom': 'calc(11px * 0.7)' } },
+                ul: { block: 'ul', styles: { 'color': '#000000', 'font-weight': '400', 'font-family': 'Arial, sans-serif', 'line-height': '1.3', 'margin-bottom': 'calc(11px * 0.7)' } },
+                ol: { block: 'ol', styles: { 'color': '#000000', 'font-weight': '400', 'font-family': 'Arial, sans-serif', 'line-height': '1.3', 'margin-bottom': 'calc(11px * 0.7)' } }
+            },
+            style_formats: [
+                { title: 'Heading 1', format: 'h1' },
+                { title: 'Heading 2', format: 'h2' },
+                { title: 'Heading 3', format: 'h3' },
+                { title: 'Heading 4', format: 'h4' },
+                { title: 'Heading 5', format: 'h5' },
+                { title: 'Heading 6', format: 'h6' },
+                { title: 'Paragraph', format: 'p' },
+                { title: 'Unordered List', format: 'ul' },
+                { title: 'Ordered List', format: 'ol' }
+            ],
+            extended_valid_elements: 'p[style]',
+            setup: function (editor) {
+                editor.on('init', function () {
+                    editor.getDoc().body.style.fontFamily = 'Arial, sans-serif';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
